@@ -6,6 +6,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 import "react-native-gesture-handler";
 import CustomDrawer from "./src/components/CustomDrawer/CustomDrawer";
 import JobDetail from "./src/pages/JobsList/JobDetail/JobDetail";
+import { TouchableOpacity } from "react-native";
+import { Feather } from "@expo/vector-icons";
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -31,7 +33,7 @@ export default function App() {
   );
 }
 
-const JobsStack = () => {
+const JobsStack = ({ navigation }) => {
   return (
     <Stack.Navigator
       screenOptions={{
@@ -40,12 +42,25 @@ const JobsStack = () => {
         headerTintColor: "#F0EECD",
       }}
     >
-      <Stack.Screen name="JobsList" component={JobsList} />
+      <Stack.Screen
+        name="JobsList"
+        component={JobsList}
+        options={{
+          headerLeft: () => (
+            <TouchableOpacity
+              style={{ marginLeft: 5 }}
+              onPress={() => navigation.openDrawer()}
+            >
+              <Feather name="menu" size={24} color="#F0EECD" />
+            </TouchableOpacity>
+          ),
+        }}
+      />
       <Stack.Screen name="JobDetail" component={JobDetail} />
     </Stack.Navigator>
   );
 };
-const FavoritesStack = () => {
+const FavoritesStack = ({ navigation }) => {
   return (
     <Stack.Navigator
       screenOptions={{
@@ -54,7 +69,20 @@ const FavoritesStack = () => {
         headerTintColor: "#F0EECD",
       }}
     >
-      <Stack.Screen name="Favorites " component={Favorites} />
+      <Stack.Screen
+        name="Favorites "
+        component={Favorites}
+        options={{
+          headerLeft: () => (
+            <TouchableOpacity
+              style={{ marginLeft: 5 }}
+              onPress={() => navigation.openDrawer()}
+            >
+              <Feather name="menu" size={24} color="#F0EECD" />
+            </TouchableOpacity>
+          ),
+        }}
+      />
     </Stack.Navigator>
   );
 };
