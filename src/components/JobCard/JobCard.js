@@ -1,9 +1,18 @@
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import styles from "./JobCard.styles";
+import { useNavigation } from "@react-navigation/native";
 
 const JobCard = ({ data }) => {
+  const navigation = useNavigation();
+  const handlePress = () => {
+    navigation.navigate("JobDetail", { data });
+  };
   return (
-    <View style={styles.container}>
+    <TouchableOpacity
+      activeOpacity={1}
+      style={styles.container}
+      onPress={handlePress}
+    >
       <Text style={styles.name}>{data.name}</Text>
       <Text style={styles.company_name}>{data.company.name}</Text>
 
@@ -12,7 +21,7 @@ const JobCard = ({ data }) => {
       </View>
 
       <Text style={styles.level}>{data.levels[0].name}</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 
