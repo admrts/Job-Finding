@@ -1,10 +1,10 @@
 import { View, Text } from "react-native";
 import React from "react";
 
-const JobCard = () => {
+const JobCard = ({ data }) => {
   return (
     <View>
-      <Text>JobCard</Text>
+      <Text>{data.name}</Text>
     </View>
   );
 };
