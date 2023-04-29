@@ -1,11 +1,32 @@
-import { View, Text } from "react-native";
+import { Text, SafeAreaView, View, ActivityIndicator } from "react-native";
 import React from "react";
+import useFetch from "../../../hooks/useFetch";
+import JobDetails from "../../../components/JobDetail/JobDetails";
 
-const JobDetail = () => {
+const JobDetail = ({ route }) => {
+  const { data: jobData } = route.params;
+
+  const { data, error, loading } = useFetch(
+    `https://www.themuse.com/api/public/jobs/${jobData.id}`
+  );
+  if (loading) {
+    return (
+      <View
+        style={{
+          flex: 1,
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor: "#F0EECD",
+        }}
+      >
+        <ActivityIndicator size="large" color="#D94B25" />
+      </View>
+    );
+  }
   return (
-    <View>
-      <Text>JobDetail</Text>
-    </View>
+    <SafeAreaView style={{ backgroundColor: "#F0EECD" }}>
+      <JobDetails data={data} />
+    </SafeAreaView>
   );
 };
 
