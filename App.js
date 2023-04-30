@@ -43,7 +43,7 @@ const JobsStack = ({ navigation }) => {
       }}
     >
       <Stack.Screen
-        name="JobsList"
+        name="JobsList "
         component={JobsList}
         options={{
           headerLeft: () => (
