@@ -8,9 +8,16 @@ import {
 import RenderHtml from "react-native-render-html";
 import styles from "./JobDetail.styles";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useDispatch } from "react-redux";
+import { addFavorite } from "../../redux/favoriteSlice";
 
 const JobDetails = ({ data }) => {
+  const dispatch = useDispatch();
   const { width } = useWindowDimensions();
+
+  const handleFavorite = () => {
+    dispatch(addFavorite(data));
+  };
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
@@ -37,7 +44,10 @@ const JobDetails = ({ data }) => {
           />
           <Text style={{ color: "#584632" }}>Submit</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.favorite_button}>
+        <TouchableOpacity
+          style={styles.favorite_button}
+          onPress={handleFavorite}
+        >
           <MaterialCommunityIcons
             name="heart-circle-outline"
             size={24}

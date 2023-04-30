@@ -8,28 +8,32 @@ import CustomDrawer from "./src/components/CustomDrawer/CustomDrawer";
 import JobDetail from "./src/pages/JobsList/JobDetail/JobDetail";
 import { TouchableOpacity } from "react-native";
 import { Feather } from "@expo/vector-icons";
+import store from "./src/redux/store";
+import { Provider } from "react-redux";
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Drawer.Navigator
-        screenOptions={{
-          headerStyle: { backgroundColor: "#138C82" },
-          headerTitleStyle: { color: "#F0EECD" },
-          headerTintColor: "#F0EECD",
-          drawerActiveTintColor: "#F0EECD",
-          drawerActiveBackgroundColor: "#584632",
-          headerShown: false,
-        }}
-        drawerContent={(props) => <CustomDrawer {...props} />}
-      >
-        <Drawer.Screen name="JobsList" component={JobsStack} />
-        <Drawer.Screen name="Favorites" component={FavoritesStack} />
-      </Drawer.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Drawer.Navigator
+          screenOptions={{
+            headerStyle: { backgroundColor: "#138C82" },
+            headerTitleStyle: { color: "#F0EECD" },
+            headerTintColor: "#F0EECD",
+            drawerActiveTintColor: "#F0EECD",
+            drawerActiveBackgroundColor: "#584632",
+            headerShown: false,
+          }}
+          drawerContent={(props) => <CustomDrawer {...props} />}
+        >
+          <Drawer.Screen name="JobsList" component={JobsStack} />
+          <Drawer.Screen name="Favorites" component={FavoritesStack} />
+        </Drawer.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }
 
