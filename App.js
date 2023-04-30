@@ -87,6 +87,7 @@ const FavoritesStack = ({ navigation }) => {
           ),
         }}
       />
+      <Stack.Screen name="JobDetail" component={JobDetail} />
     </Stack.Navigator>
   );
 };
