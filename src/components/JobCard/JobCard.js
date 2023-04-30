@@ -2,7 +2,7 @@ import { View, Text, TouchableOpacity } from "react-native";
 import styles from "./JobCard.styles";
 import { useNavigation } from "@react-navigation/native";
 
-const JobCard = ({ data }) => {
+const JobCard = ({ data, removeId }) => {
   const navigation = useNavigation();
   const handlePress = () => {
     navigation.navigate("JobDetail", { data });
@@ -21,6 +21,11 @@ const JobCard = ({ data }) => {
       </View>
 
       <Text style={styles.level}>{data.levels[0].name}</Text>
+      {removeId && (
+        <TouchableOpacity style={styles.remove_container}>
+          <Text style={styles.remove_text}>Remove Favorite</Text>
+        </TouchableOpacity>
+      )}
     </TouchableOpacity>
   );
 };

@@ -32,4 +32,15 @@ export default StyleSheet.create({
     color: "#584632",
     fontWeight: "700",
   },
+  remove_container: {
+    backgroundColor: "#F44336",
+    justifyContent: "center",
+    alignItems: "center",
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 7,
+  },
+  remove_text: {
+    color: "#F0EECD",
+  },
 });

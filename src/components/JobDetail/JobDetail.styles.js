@@ -55,4 +55,16 @@ export default StyleSheet.create({
     flexDirection: "row",
     gap: 5,
   },
+  remove_container: {
+    backgroundColor: "#F44336",
+    justifyContent: "center",
+    alignItems: "center",
+    flex: 1,
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 7,
+  },
+  remove_text: {
+    color: "#F0EECD",
+  },
 });

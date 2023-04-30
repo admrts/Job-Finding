@@ -1,4 +1,4 @@
-import { View, Text, FlatList, StyleSheet, ScrollView } from "react-native";
+import { View, FlatList, StyleSheet, SafeAreaView } from "react-native";
 import React from "react";
 import { useSelector } from "react-redux";
 import JobCard from "../../components/JobCard/JobCard";
@@ -6,13 +6,13 @@ import JobCard from "../../components/JobCard/JobCard";
 const Favorites = () => {
   const { favorites } = useSelector((state) => state.favorite);
   return (
-    <ScrollView style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <FlatList
         data={favorites}
         keyExtractor={favorites.id}
-        renderItem={({ item }) => <JobCard data={item} />}
+        renderItem={({ item }) => <JobCard data={item} removeId={item.id} />}
       />
-    </ScrollView>
+    </SafeAreaView>
   );
 };
 
@@ -20,5 +20,6 @@ export default Favorites;
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#F0EECD",
+    flex: 1,
   },
 });

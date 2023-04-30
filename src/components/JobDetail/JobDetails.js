@@ -8,10 +8,12 @@ import {
 import RenderHtml from "react-native-render-html";
 import styles from "./JobDetail.styles";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addFavorite } from "../../redux/favoriteSlice";
 
 const JobDetails = ({ data }) => {
+  const { favorites } = useSelector((store) => store.favorite);
+  const item = favorites.find((fav) => fav.id === data.id);
   const dispatch = useDispatch();
   const { width } = useWindowDimensions();
 
@@ -44,17 +46,24 @@ const JobDetails = ({ data }) => {
           />
           <Text style={{ color: "#584632" }}>Submit</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.favorite_button}
-          onPress={handleFavorite}
-        >
-          <MaterialCommunityIcons
-            name="heart-circle-outline"
-            size={24}
-            color="#584632"
-          />
-          <Text style={{ color: "#584632" }}>Add Favorite</Text>
-        </TouchableOpacity>
+
+        {item ? (
+          <TouchableOpacity style={styles.remove_container}>
+            <Text style={styles.remove_text}>Remove Favorite</Text>
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity
+            style={styles.favorite_button}
+            onPress={handleFavorite}
+          >
+            <MaterialCommunityIcons
+              name="heart-circle-outline"
+              size={24}
+              color="#584632"
+            />
+            <Text style={{ color: "#584632" }}>Add Favorite</Text>
+          </TouchableOpacity>
+        )}
       </View>
     </ScrollView>
   );

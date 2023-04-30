@@ -4,7 +4,7 @@ import useFetch from "../../hooks/useFetch";
 import JobCard from "../../components/JobCard/JobCard";
 
 const JobsList = () => {
-  const { data } = useFetch("https://www.themuse.com/api/public/jobs?page=2");
+  const { data } = useFetch("https://www.themuse.com/api/public/jobs?page=1");
 
   return (
     <SafeAreaView style={styles.container}>
