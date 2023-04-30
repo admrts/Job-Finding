@@ -11,17 +11,15 @@ const favoriteSlice = createSlice({
   reducers: {
     addFavorite: (state, action) => {
       const item = state.favorites.find((fav) => fav.id === action.payload.id);
-      console.log(item);
+
       if (item) {
-        Alert.alert("already exist");
+        Alert.alert("ERROR! This job already exist in favorites");
       } else {
-        console.log("yok");
         state.favorites.push(action.payload);
+        Alert.alert("Successfully. This job added favorites.");
       }
     },
-    deleteFavorite: (state, action) => {
-      console.log("delete");
-    },
+    deleteFavorite: (state, action) => {},
   },
 });
 
