@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { Alert } from "react-native";
 
 const initialState = {
   favorites: [],
@@ -9,8 +10,14 @@ const favoriteSlice = createSlice({
   initialState,
   reducers: {
     addFavorite: (state, action) => {
-      state.favorites.push(action.payload);
-      console.log(state.favorites.length);
+      const item = state.favorites.find((fav) => fav.id === action.payload.id);
+      console.log(item);
+      if (item) {
+        Alert.alert("already exist");
+      } else {
+        console.log("yok");
+        state.favorites.push(action.payload);
+      }
     },
     deleteFavorite: (state, action) => {
       console.log("delete");
