@@ -1,11 +1,17 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import styles from "./JobCard.styles";
 import { useNavigation } from "@react-navigation/native";
+import { useDispatch } from "react-redux";
+import { deleteFavoriteById } from "../../redux/favoriteSlice";
 
 const JobCard = ({ data, removeId }) => {
+  const dispatch = useDispatch();
   const navigation = useNavigation();
   const handlePress = () => {
     navigation.navigate("JobDetail", { data });
+  };
+  const removeFavorite = () => {
+    dispatch(deleteFavoriteById(data.id));
   };
   return (
     <TouchableOpacity
@@ -22,7 +28,10 @@ const JobCard = ({ data, removeId }) => {
 
       <Text style={styles.level}>{data.levels[0].name}</Text>
       {removeId && (
-        <TouchableOpacity style={styles.remove_container}>
+        <TouchableOpacity
+          style={styles.remove_container}
+          onPress={removeFavorite}
+        >
           <Text style={styles.remove_text}>Remove Favorite</Text>
         </TouchableOpacity>
       )}

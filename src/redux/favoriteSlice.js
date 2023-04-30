@@ -19,9 +19,15 @@ const favoriteSlice = createSlice({
         Alert.alert("Successfully. This job added favorites.");
       }
     },
-    deleteFavorite: (state, action) => {},
+    deleteFavoriteById: (state, action) => {
+      const filteredList = state.favorites.filter((item) => {
+        return item.id !== action.payload;
+      });
+      state.favorites = filteredList;
+      Alert.alert("Successfully Removed");
+    },
   },
 });
 
-export const { addFavorite, deleteFavorite } = favoriteSlice.actions;
+export const { addFavorite, deleteFavoriteById } = favoriteSlice.actions;
 export default favoriteSlice.reducer;

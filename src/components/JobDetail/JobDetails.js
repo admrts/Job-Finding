@@ -10,6 +10,7 @@ import styles from "./JobDetail.styles";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { addFavorite } from "../../redux/favoriteSlice";
+import { deleteFavoriteById } from "../../redux/favoriteSlice";
 
 const JobDetails = ({ data }) => {
   const { favorites } = useSelector((store) => store.favorite);
@@ -19,6 +20,9 @@ const JobDetails = ({ data }) => {
 
   const handleFavorite = () => {
     dispatch(addFavorite(data));
+  };
+  const removeFavorite = () => {
+    dispatch(deleteFavoriteById(data.id));
   };
   return (
     <ScrollView style={styles.container}>
@@ -48,7 +52,10 @@ const JobDetails = ({ data }) => {
         </TouchableOpacity>
 
         {item ? (
-          <TouchableOpacity style={styles.remove_container}>
+          <TouchableOpacity
+            style={styles.remove_container}
+            onPress={removeFavorite}
+          >
             <Text style={styles.remove_text}>Remove Favorite</Text>
           </TouchableOpacity>
         ) : (
