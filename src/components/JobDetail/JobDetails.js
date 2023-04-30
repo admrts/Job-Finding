@@ -4,6 +4,7 @@ import {
   TouchableOpacity,
   useWindowDimensions,
   View,
+  Linking,
 } from "react-native";
 import RenderHtml from "react-native-render-html";
 import styles from "./JobDetail.styles";
@@ -24,6 +25,9 @@ const JobDetails = ({ data }) => {
   const removeFavorite = () => {
     dispatch(deleteFavoriteById(data.id));
   };
+  const handleSubmit = () => {
+    Linking.openURL(`${data.refs.landing_page}`);
+  };
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
@@ -42,7 +46,7 @@ const JobDetails = ({ data }) => {
         />
       </View>
       <View style={styles.buttons_container}>
-        <TouchableOpacity style={styles.submit_button}>
+        <TouchableOpacity style={styles.submit_button} onPress={handleSubmit}>
           <MaterialCommunityIcons
             name="arrow-right-bold-box"
             size={24}
