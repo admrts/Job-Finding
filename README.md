@@ -12,7 +12,7 @@ This exercise was created by using following tools:
 
 ### Demo
 
-![](./assets/s.gif)
+![](./assets/screen.gif)
 
 ### Screenshots
 
