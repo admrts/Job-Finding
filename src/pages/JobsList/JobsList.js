@@ -1,10 +1,48 @@
-import { FlatList, StyleSheet, SafeAreaView } from "react-native";
-import React, { useEffect } from "react";
+import {
+  FlatList,
+  StyleSheet,
+  SafeAreaView,
+  ActivityIndicator,
+  View,
+  Text,
+} from "react-native";
+import React from "react";
 import useFetch from "../../hooks/useFetch";
 import JobCard from "../../components/JobCard/JobCard";
 
 const JobsList = () => {
-  const { data } = useFetch("https://www.themuse.com/api/public/jobs?page=1");
+  const { data, loading, error } = useFetch(
+    "https://www.themuse.com/api/public/jobs?page=1"
+  );
+
+  if (loading) {
+    return (
+      <View
+        style={{
+          flex: 1,
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor: "#F0EECD",
+        }}
+      >
+        <ActivityIndicator size="large" color="#D94B25" />
+      </View>
+    );
+  }
+  if (error) {
+    return (
+      <View
+        style={{
+          flex: 1,
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor: "#F0EECD",
+        }}
+      >
+        <Text>Something went wrong. Check Your Internet Connection</Text>
+      </View>
+    );
+  }
 
   return (
     <SafeAreaView style={styles.container}>

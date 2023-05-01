@@ -23,6 +23,20 @@ const JobDetail = ({ route }) => {
       </View>
     );
   }
+  if (error) {
+    return (
+      <View
+        style={{
+          flex: 1,
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor: "#F0EECD",
+        }}
+      >
+        <Text>Something went wrong. Check Your Internet Connection</Text>
+      </View>
+    );
+  }
   return (
     <SafeAreaView style={{ backgroundColor: "#F0EECD" }}>
       <JobDetails data={data} />
