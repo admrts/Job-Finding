@@ -12,7 +12,8 @@ This exercise was created by using following tools:
 
 ### Demo
 
-![](./assets/sc.gif)
+
+<img src="./assets/sc.gif" width="150">
 
 ### Screenshots
 
